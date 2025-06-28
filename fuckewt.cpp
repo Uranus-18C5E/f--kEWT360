@@ -13,6 +13,10 @@ int main()
     COLORREF End1=GetPixel(Screen,406*screenx,519*screeny);//EWT植物人的帽子上的棕色
     POINT pt;
     GetCursorPos(&pt);
+    if(End==RGB(75,126,251)&&End1==RGB(170,103,108)&&pt.y>1034*screeny)
+    {
+        std::cout<<"此页课程已经播放完毕，请下滑鼠标或者更换下一天的课程";
+    }
     while(End!=RGB(75,126,251)&&End1!=RGB(170,103,108))
     {
         if(Pause==RGB(46,134,255)||Pause==RGB(0,102,255))
@@ -27,20 +31,20 @@ int main()
     End1=GetPixel(Screen,406,519);//EWT植物人的帽子上的棕色
 
     }
-    if(End==RGB(75,126,251)&&End1==RGB(170,103,108)&&pt.y<1034*screeny)
-    {
+
      //两课程之间相差84px
     SetCursorPos((Classx+84)*screenx,(Classy+84)*screeny);
     mouse_event(MOUSEEVENTF_LEFTDOWN|MOUSEEVENTF_LEFTUP,0,0,0,0);
-    Classy+84*screeny;
+    Classy=Classy+(84*screeny);
+    std::cout<<"本节课程已完成\n";
+    Sleep(3000);
     goto LANDEXIELE;
-    }
-    else if(End==RGB(75,126,251)&&End1==RGB(170,103,108)&&pt.y>1034*screeny)
-    {
-        std::cout<<"此页课程已经播放完毕，请下滑鼠标或者更换下一天的课程";
-    }
     ReleaseDC(NULL,Screen);
     system("pause");
     return 0;
 
 }
+/*    if(End==RGB(75,126,251)&&End1==RGB(170,103,108)&&pt.y>1034*screeny)
+    {
+        std::cout<<"此页课程已经播放完毕，请下滑鼠标或者更换下一天的课程";
+    }*/
